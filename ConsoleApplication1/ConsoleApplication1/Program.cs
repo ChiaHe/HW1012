@@ -10,12 +10,14 @@ namespace model
     {
         static void Main(string[] args)
         {
-            var nodes = findOpenData();
-            showOpenData(nodes);
-            nodes.ForEach(i=> {
-                sql.Insert(i);
-            });
-            
+            //var nodes = findOpenData();
+            //showOpenData(nodes);
+            //nodes.ForEach(i =>
+            //{
+            //    sql.Insert(i);
+            //});
+            var nodes2 = sql.DataOut();
+            showOpenData(nodes2);
             Console.ReadKey();
         }
 

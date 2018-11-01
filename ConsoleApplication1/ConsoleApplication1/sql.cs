@@ -37,5 +37,42 @@ VALUES              (N'{0}',N'{1}',N'{2}',N'{3}',N'{4}')
 
             connection.Close();
         }
+
+        public static List<OpenData> DataOut()
+        {
+            List<OpenData> result = new List<OpenData>();
+            var connection = new SqlConnection(ConnectionString);
+            connection.Open();
+
+
+            var command = new SqlCommand("", connection);
+            command.CommandText = string.Format(@"Select * From data");
+
+            var reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                var item = new OpenData();
+
+                item.名稱 = reader.GetString(1);
+                item.鄉鎮市別 = reader.GetString(2);
+                item.地址 = reader.GetString(3);
+                item.聯絡單位 = reader.GetString(4);
+                item.電話 = reader.GetString(5);
+                result.Add(item);
+            }
+            reader.Close();
+
+
+
+
+
+
+            command.ExecuteNonQuery();
+            connection.Close();
+
+
+            return result;
+        }
+
     }
 }
