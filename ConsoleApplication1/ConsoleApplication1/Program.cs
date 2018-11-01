@@ -12,6 +12,10 @@ namespace model
         {
             var nodes = findOpenData();
             showOpenData(nodes);
+            nodes.ForEach(i=> {
+                sql.Insert(i);
+            });
+            
             Console.ReadKey();
         }
 
